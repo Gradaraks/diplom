@@ -1,14 +1,24 @@
-// src/db.js
 const { Pool } = require('pg');
 
-if (!process.env.DATABASE_URL) {
-  console.error('❌ Ошибка: переменная окружения DATABASE_URL не установлена!');
-  process.exit(1);
+function createPool() {
+  if (!process.env.DATABASE_URL) {
+    console.error('❌ DATABASE_URL не задана. Повторная попытка через 5 секунд...');
+    return null;
+  }
+  return new Pool({
+    connectionString: process.env.DATABASE_URL,
+    ssl: { rejectUnauthorized: false }
+  });
 }
 
-const pool = new Pool({
-  connectionString: process.env.DATABASE_URL,
-  ssl: { rejectUnauthorized: false }  // обязательно для Railway
-});
+let pool = createPool();
+if (!pool) {
+  // Ждём и пробуем ещё раз
+  setTimeout(() => {
+    pool = createPool();
+  }, 5000);
+}
 
-module.exports = pool;
+module.exports = {
+  getPool: () => pool
+};
