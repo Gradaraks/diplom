@@ -1,0 +1,39 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background: #1e1e1e;
+  color: #d4d4d4;
+}
+nav {
+  background: #333;
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+nav a {
+  color: #61dafb;
+  margin-right: 20px;
+  text-decoration: none;
+}
+button {
+  background: #0e639c;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  cursor: pointer;
+  margin: 5px;
+}
+textarea {
+  width: 100%;
+  background: #1e1e1e;
+  color: #d4d4d4;
+  border: 1px solid #444;
+}
+pre {
+  background: #252526;
+  padding: 10px;
+  border: 1px solid #444;
+  white-space: pre-wrap;
+}
